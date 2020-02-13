@@ -4,6 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@AllArgsConstructor
+@Data
 public class Hero {
     private float x;
     private float y;
@@ -12,12 +19,21 @@ public class Hero {
     private int jumpHeight = 300;
     private int gravity = -500;
     private int ground = 102;
-    private Texture image;
+    Texture image;
 
-    public Hero() {
+    CollisionRectangle rect;
+
+    MyGdxGame game;
+
+    private int life = 3;
+    private boolean alive = true;
+
+    public Hero(MyGdxGame myGdxGame) {
+        this.game = myGdxGame;
         image = new Texture("viking.png");
         y = ground;
         x = 50;
+        rect = new CollisionRectangle((int) x, (int) y, image.getWidth(), image.getHeight());
     }
 
 
@@ -34,6 +50,8 @@ public class Hero {
             yVelocity = 0;
             y = ground;
         }
+
+        rect.move((int) x, (int) y);
     }
 
 
@@ -56,5 +74,14 @@ public class Hero {
 
     public void render(SpriteBatch batch) {
         batch.draw(image, x, y);
+
+        game.font.draw(batch, rect.toString(), this.x, this.y + image.getHeight());
+    }
+
+    public void hit(int i) {
+        life--;
+        if (life <= 0) {
+            this.alive = false;
+        }
     }
 }
