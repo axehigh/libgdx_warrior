@@ -21,7 +21,7 @@ public class Hero {
     private int ground = 102;
     Texture image;
 
-    CollisionRectangle rect;
+    public CollisionRectangle rect;
 
     MyGdxGame game;
 

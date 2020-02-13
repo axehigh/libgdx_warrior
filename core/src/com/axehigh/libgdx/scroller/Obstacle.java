@@ -14,7 +14,7 @@ public class Obstacle {
     private Texture image;
     private float velocity;
 
-    CollisionRectangle rect;
+    public CollisionRectangle rect;
 
     public Obstacle(MyGdxGame myGdxGame, int startingX, int velocity) {
         this.game = myGdxGame;
