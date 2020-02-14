@@ -1,9 +1,9 @@
 package com.axehigh.libgdx.scroller.screen;
 
-import com.axehigh.libgdx.scroller.BackgroundManager;
-import com.axehigh.libgdx.scroller.Hero;
+import com.axehigh.libgdx.scroller.background.BackgroundManager;
+import com.axehigh.libgdx.scroller.hero.Hero;
 import com.axehigh.libgdx.scroller.MyGdxGame;
-import com.axehigh.libgdx.scroller.Obstacle;
+import com.axehigh.libgdx.scroller.obstacle.Obstacle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 
@@ -12,24 +12,24 @@ import java.util.List;
 import java.util.Random;
 
 public class GameScreen extends ScreenAdapter {
+    private final BackgroundManager background;
+    private final int screenWidth;
     MyGdxGame game;
 
-    public GameScreen(MyGdxGame game) {
-        this.game = game;
-        hero = new Hero(game);
-        screenWidth = Gdx.graphics.getWidth();
-        background = new BackgroundManager(screenWidth);
-
-    }
-
-
     private Hero hero;
-    private BackgroundManager background;
-    private int screenWidth;
 
     private List<Obstacle> obstacleList = new ArrayList<>();
     private int obstacleCounter = 10;
 
+
+    public GameScreen(MyGdxGame game) {
+        this.game = game;
+        hero = new Hero(game);
+
+        background = game.getBackgroundManager();
+        screenWidth = game.getScreenWidth();
+
+    }
 
     @Override
     public void render(float delta) {

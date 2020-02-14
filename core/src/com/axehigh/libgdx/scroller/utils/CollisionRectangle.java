@@ -1,4 +1,4 @@
-package com.axehigh.libgdx.scroller;
+package com.axehigh.libgdx.scroller.utils;
 
 public class CollisionRectangle {
 

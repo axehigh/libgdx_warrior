@@ -1,5 +1,6 @@
 package com.axehigh.libgdx.scroller
 
+import com.axehigh.libgdx.scroller.utils.CollisionRectangle
 import org.jetbrains.annotations.TestOnly
 
 class CollisionRectangleTest extends GroovyTestCase {

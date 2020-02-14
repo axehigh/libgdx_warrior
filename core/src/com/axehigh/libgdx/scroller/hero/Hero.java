@@ -1,5 +1,7 @@
-package com.axehigh.libgdx.scroller;
+package com.axehigh.libgdx.scroller.hero;
 
+import com.axehigh.libgdx.scroller.MyGdxGame;
+import com.axehigh.libgdx.scroller.utils.CollisionRectangle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -75,7 +77,9 @@ public class Hero {
     public void render(SpriteBatch batch) {
         batch.draw(image, x, y);
 
-        game.font.draw(batch, rect.toString(), this.x, this.y + image.getHeight());
+        if (game.debug) {
+            game.font.draw(batch, rect.toString(), this.x, this.y + image.getHeight());
+        }
     }
 
     public void hit(int i) {

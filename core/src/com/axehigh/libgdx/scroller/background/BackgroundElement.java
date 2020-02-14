@@ -1,4 +1,4 @@
-package com.axehigh.libgdx.scroller;
+package com.axehigh.libgdx.scroller.background;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

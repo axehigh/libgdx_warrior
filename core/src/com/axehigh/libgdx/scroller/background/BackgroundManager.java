@@ -1,4 +1,4 @@
-package com.axehigh.libgdx.scroller;
+package com.axehigh.libgdx.scroller.background;
 
 
 import com.badlogic.gdx.Gdx;
@@ -21,7 +21,7 @@ public class BackgroundManager {
         this.screenWidth = screenWidth;
 
 
-        ground = new BackgroundElement(new GridPoint2(0, 0), 200, new Texture("background/ground.png"));
+        ground = new BackgroundElement(new GridPoint2(0, 0), 50, new Texture("background/ground.png"));
 
         grounds.add(new BackgroundElement(new GridPoint2(0, 0), 50, new Texture("background/1.png")));
         grounds.add(new BackgroundElement(new GridPoint2(0, 0), 8, new Texture("background/2.png")));
@@ -51,5 +51,6 @@ public class BackgroundManager {
 
 
     }
+
 
 }
