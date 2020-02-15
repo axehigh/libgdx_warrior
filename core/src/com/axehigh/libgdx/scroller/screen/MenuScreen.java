@@ -9,7 +9,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-import static com.axehigh.libgdx.scroller.screen.ImageButton.playButtonImage;
+import static com.axehigh.libgdx.scroller.screen.ImageRectangle.playButtonImage;
 import static com.axehigh.libgdx.scroller.utils.GfxUtils.getCenterX;
 import static com.axehigh.libgdx.scroller.utils.GfxUtils.getCenterY;
 
@@ -17,7 +17,7 @@ public class MenuScreen extends ScreenAdapter {
 
 
     MyGdxGame game;
-    ImageButton playButton;
+    ImageRectangle playButton;
     private OrthographicCamera camera;
     private final Music music;
 
@@ -26,7 +26,7 @@ public class MenuScreen extends ScreenAdapter {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.translate(camera.viewportWidth / 2, camera.viewportHeight / 2);
 
-        playButton = new ImageButton(playButtonImage, getCenterX(), getCenterY());
+        playButton = new ImageRectangle(playButtonImage, getCenterX(), getCenterY());
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/ice_giants.mp3"));
         music.setLooping(true);

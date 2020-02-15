@@ -1,14 +1,13 @@
 package com.axehigh.libgdx.scroller.screen;
 
 import com.axehigh.libgdx.scroller.GameText;
+import com.axehigh.libgdx.scroller.MyGdxGame;
 import com.axehigh.libgdx.scroller.background.BackgroundManager;
 import com.axehigh.libgdx.scroller.hero.Hero;
-import com.axehigh.libgdx.scroller.MyGdxGame;
 import com.axehigh.libgdx.scroller.obstacle.Obstacle;
 import com.axehigh.libgdx.scroller.utils.GfxUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -80,7 +79,7 @@ public class GameScreen extends ScreenAdapter {
     private void generateObstacles() {
         if (obstacleCounter < 0) {
             Random random = new Random();
-            obstacleCounter = random.nextInt(200) + 200;
+            obstacleCounter = random.nextInt(100) + 75;
             Gdx.app.log(GameText.gameTag, "Created obstacle" + obstacleCounter);
             int speed = Math.max(game.gameScore.getScore() * 5, 100);
             obstacleList.add(new Obstacle(game, screenWidth, 200 + speed));

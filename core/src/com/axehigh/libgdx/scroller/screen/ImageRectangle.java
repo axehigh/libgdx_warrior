@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import lombok.Getter;
 
 @Getter
-public class ImageButton {
+public class ImageRectangle {
 
     public final static String playButtonImage = "buttons/button_play.png";
     public final static String menuButtonImage = "buttons/button_menu.png";
@@ -17,11 +17,11 @@ public class ImageButton {
     private final Texture image;
     private Rectangle rect;
 
-    public ImageButton(String fileName, int x, int y) {
+    public ImageRectangle(String fileName, int x, int y) {
         this(fileName, x, y, true);
     }
 
-    public ImageButton(String fileName, int x, int y, boolean center) {
+    public ImageRectangle(String fileName, int x, int y, boolean center) {
         this.image = new Texture(fileName);
         int xRect = x;
         int yRect = y;
@@ -38,7 +38,7 @@ public class ImageButton {
     }
 
     public void render(SpriteBatch batch, float x, float y) {
-        batch.draw(image, x, y);
+        batch.draw(image, rect.x + x, rect.y + y);
     }
 
     public boolean contains(int x, int y) {

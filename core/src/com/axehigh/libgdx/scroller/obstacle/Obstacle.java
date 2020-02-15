@@ -1,8 +1,6 @@
 package com.axehigh.libgdx.scroller.obstacle;
 
 import com.axehigh.libgdx.scroller.MyGdxGame;
-import com.axehigh.libgdx.scroller.utils.CollisionRectangle;
-import com.axehigh.libgdx.scroller.utils.GfxUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

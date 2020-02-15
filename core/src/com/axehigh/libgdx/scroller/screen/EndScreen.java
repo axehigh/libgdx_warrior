@@ -7,11 +7,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 
-import static com.axehigh.libgdx.scroller.screen.ImageButton.menuButtonImage;
-import static com.axehigh.libgdx.scroller.screen.ImageButton.playButtonImage;
+import static com.axehigh.libgdx.scroller.screen.ImageRectangle.menuButtonImage;
+import static com.axehigh.libgdx.scroller.screen.ImageRectangle.playButtonImage;
 import static com.axehigh.libgdx.scroller.utils.GfxUtils.getCenterX;
 import static com.axehigh.libgdx.scroller.utils.GfxUtils.getCenterY;
 
@@ -19,10 +18,10 @@ import static com.axehigh.libgdx.scroller.utils.GfxUtils.getCenterY;
 public class EndScreen extends ScreenAdapter {
 
     private MyGdxGame game;
-    private ImageButton playButton;
-    private ImageButton menuButton;
+    private ImageRectangle playButton;
+    private ImageRectangle menuButton;
     private OrthographicCamera camera;
-    private ImageButton txtButton;
+    private ImageRectangle txtMessage;
 
     public EndScreen(MyGdxGame game, boolean newHiscore) {
         this.game = game;
@@ -32,13 +31,13 @@ public class EndScreen extends ScreenAdapter {
 
 
         if (newHiscore) {
-            txtButton = new ImageButton("messages/header_win.png", GfxUtils.getCenterX(), Gdx.graphics.getHeight());
+            txtMessage = new ImageRectangle("messages/header_win.png", GfxUtils.getCenterX(), Gdx.graphics.getHeight());
         } else {
-            txtButton = new ImageButton("messages/header_failed.png", GfxUtils.getCenterX(), Gdx.graphics.getHeight());
+            txtMessage = new ImageRectangle("messages/header_failed.png", GfxUtils.getCenterX(), Gdx.graphics.getHeight());
         }
 
-        menuButton = new ImageButton(menuButtonImage, getCenterX(), getCenterY(), true);
-        playButton = new ImageButton(playButtonImage, getCenterX(), getCenterY() + menuButton.getImage().getHeight() + 10, true);
+        menuButton = new ImageRectangle(menuButtonImage, getCenterX(), getCenterY(), true);
+        playButton = new ImageRectangle(playButtonImage, getCenterX(), getCenterY() + menuButton.getImage().getHeight() + 10, true);
 
 
     }
@@ -78,9 +77,9 @@ public class EndScreen extends ScreenAdapter {
         game.batch.begin();
         game.getBackgroundManager().render(game.batch);
 
-        menuButton.render(game.batch);
-        playButton.render(game.batch);
-        txtButton.render(game.batch);
+        menuButton.render(game.batch,0,50);
+        playButton.render(game.batch,0,100);
+        txtMessage.render(game.batch, 0, -txtMessage.getImage().getHeight() - 10);
         game.batch.end();
 
         if (game.debugRect) {
