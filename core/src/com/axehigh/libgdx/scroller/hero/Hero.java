@@ -20,8 +20,8 @@ public class Hero {
     private float x;
     private float y;
 
-    private float yVelocity = 0;
-    private int jumpHeight = 400;
+    private float jumpVelocity = 0;
+    private int jumpMaxHeight = 400;
     private int gravity = -500;
     private int ground = 102;
 
@@ -61,13 +61,13 @@ public class Hero {
         keyboardInput();
         float dt = Gdx.graphics.getDeltaTime();
 
-        if (yVelocity != 0) {
-            y = (y + yVelocity * dt);
-            yVelocity = yVelocity + gravity * dt;
+        if (jumpVelocity != 0) {
+            y = (y + jumpVelocity * dt);
+            jumpVelocity = jumpVelocity + gravity * dt;
         }
 
         if (y < ground) {
-            yVelocity = 0;
+            jumpVelocity = 0;
             y = ground;
         }
 
@@ -87,8 +87,8 @@ public class Hero {
 
     private void jump() {
 
-        if (yVelocity == 0) {
-            yVelocity = jumpHeight;
+        if (jumpVelocity == 0) {
+            jumpVelocity = jumpMaxHeight;
         }
     }
 
@@ -100,7 +100,7 @@ public class Hero {
 
         batch.draw(images.get((int) frame), x, y);
 
-        if (game.debug) {
+        if (game.debugCoord) {
             game.font.draw(batch, rect.toString(), this.x, this.y + images.get(0).getHeight());
         }
     }

@@ -81,7 +81,7 @@ public class EndScreen extends ScreenAdapter {
         playButton.render(game.batch);
         game.batch.end();
 
-        if (game.debug) {
+        if (game.debugRect) {
             menuButton.drawRectangle(game.shape);
             playButton.drawRectangle(game.shape);
         }

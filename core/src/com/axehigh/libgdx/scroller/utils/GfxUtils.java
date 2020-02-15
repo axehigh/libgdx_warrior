@@ -1,7 +1,9 @@
 package com.axehigh.libgdx.scroller.utils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class GfxUtils {
     public static void clearScreen() {
@@ -19,5 +21,12 @@ public class GfxUtils {
 
     public float deltaTime() {
         return Gdx.graphics.getDeltaTime();
+    }
+
+    public static void drawRectangle(ShapeRenderer shape, CollisionRectangle rect) {
+        shape.begin(ShapeRenderer.ShapeType.Line);
+        shape.setColor(Color.RED);
+        shape.rect(rect.x, rect.y, rect.width, rect.height);
+        shape.end();
     }
 }

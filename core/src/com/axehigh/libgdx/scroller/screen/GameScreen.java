@@ -67,6 +67,13 @@ public class GameScreen extends ScreenAdapter {
 
         game.gameScore.render();
 
+        if (game.debugRect) {
+            GfxUtils.drawRectangle(game.shape, hero.rect);
+            for (Obstacle obstacle : obstacleList) {
+                GfxUtils.drawRectangle(game.shape, obstacle.rect);
+            }
+        }
+
         game.batch.end();
     }
 

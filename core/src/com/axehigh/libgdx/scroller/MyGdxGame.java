@@ -11,11 +11,14 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 
 public class MyGdxGame extends Game {
+    public boolean debug = true;
+    public boolean debugCoord =false;
+    public boolean debugRect =true;
+
     public SpriteBatch batch;
     public BitmapFont font;
     public ShapeRenderer shape;
 
-    public boolean debug = false;
 
     public GameScore gameScore;
 

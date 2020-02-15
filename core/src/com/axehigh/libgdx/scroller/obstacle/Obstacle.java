@@ -2,6 +2,7 @@ package com.axehigh.libgdx.scroller.obstacle;
 
 import com.axehigh.libgdx.scroller.MyGdxGame;
 import com.axehigh.libgdx.scroller.utils.CollisionRectangle;
+import com.axehigh.libgdx.scroller.utils.GfxUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -52,7 +53,6 @@ public class Obstacle {
         }
 
 
-
         rect.move((int) this.x, (int) this.y);
     }
 
@@ -62,7 +62,7 @@ public class Obstacle {
             frame = 0;
         }
         batch.draw(images.get(frame), x, y);
-        if (game.debug) {
+        if (game.debugCoord) {
             game.font.draw(batch, rect.toString(), this.x, this.y + images.get(frame).getHeight());
         }
     }

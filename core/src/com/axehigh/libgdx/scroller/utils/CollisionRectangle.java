@@ -2,7 +2,6 @@ package com.axehigh.libgdx.scroller.utils;
 
 import com.axehigh.libgdx.scroller.GameText;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Rectangle;
 
 public class CollisionRectangle {
 
