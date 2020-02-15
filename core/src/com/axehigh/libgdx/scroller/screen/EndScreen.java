@@ -10,8 +10,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 
-import lombok.Getter;
-
 import static com.axehigh.libgdx.scroller.screen.ImageButton.menuButtonImage;
 import static com.axehigh.libgdx.scroller.screen.ImageButton.playButtonImage;
 import static com.axehigh.libgdx.scroller.utils.GfxUtils.getCenterX;
@@ -24,16 +22,20 @@ public class EndScreen extends ScreenAdapter {
     private ImageButton playButton;
     private ImageButton menuButton;
     private OrthographicCamera camera;
+    private ImageButton txtButton;
 
-    private Texture txtFailed;
-
-    public EndScreen(MyGdxGame game) {
+    public EndScreen(MyGdxGame game, boolean newHiscore) {
         this.game = game;
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.translate(camera.viewportWidth / 2, camera.viewportHeight / 2);
 
-        txtFailed = new Texture("messages/header_failed.png");
+
+        if (newHiscore) {
+            txtButton = new ImageButton("messages/header_win.png", GfxUtils.getCenterX(), Gdx.graphics.getHeight());
+        } else {
+            txtButton = new ImageButton("messages/header_failed.png", GfxUtils.getCenterX(), Gdx.graphics.getHeight());
+        }
 
         menuButton = new ImageButton(menuButtonImage, getCenterX(), getCenterY(), true);
         playButton = new ImageButton(playButtonImage, getCenterX(), getCenterY() + menuButton.getImage().getHeight() + 10, true);
@@ -76,9 +78,9 @@ public class EndScreen extends ScreenAdapter {
         game.batch.begin();
         game.getBackgroundManager().render(game.batch);
 
-        game.batch.draw(txtFailed, GfxUtils.getCenterX() - txtFailed.getWidth() / 2, Gdx.graphics.getHeight() * .80f);
         menuButton.render(game.batch);
         playButton.render(game.batch);
+        txtButton.render(game.batch);
         game.batch.end();
 
         if (game.debugRect) {

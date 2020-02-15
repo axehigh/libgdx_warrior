@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 
 public class GfxUtils {
     public static void clearScreen() {
@@ -23,7 +24,7 @@ public class GfxUtils {
         return Gdx.graphics.getDeltaTime();
     }
 
-    public static void drawRectangle(ShapeRenderer shape, CollisionRectangle rect) {
+    public static void drawRectangle(ShapeRenderer shape, Rectangle rect) {
         shape.begin(ShapeRenderer.ShapeType.Line);
         shape.setColor(Color.RED);
         shape.rect(rect.x, rect.y, rect.width, rect.height);

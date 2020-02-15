@@ -30,6 +30,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(MyGdxGame game) {
         this.game = game;
         hero = new Hero(game);
+        game.gameScore.resetGame();
 
         background = game.getBackgroundManager();
         screenWidth = game.getScreenWidth();
@@ -57,24 +58,23 @@ public class GameScreen extends ScreenAdapter {
         if (hero.isAlive()) {
             hero.render(game.batch);
         } else {
-            game.setScreen(new EndScreen(game));
+            boolean newHiscore = game.gameScore.checkHiscore();
+            game.setScreen(new EndScreen(game,newHiscore));
         }
 
-        //font.draw(batch, "Hello World!" + hero.getLife(), 200, 200);
         for (Obstacle obstacle : obstacleList) {
             obstacle.render(game.batch);
         }
 
         game.gameScore.render();
+        game.batch.end();
 
         if (game.debugRect) {
-            GfxUtils.drawRectangle(game.shape, hero.rect);
+            GfxUtils.drawRectangle(game.shape, hero.getRect());
             for (Obstacle obstacle : obstacleList) {
                 GfxUtils.drawRectangle(game.shape, obstacle.rect);
             }
         }
-
-        game.batch.end();
     }
 
     private void generateObstacles() {
@@ -90,7 +90,7 @@ public class GameScreen extends ScreenAdapter {
     private void checkCollisionWithObstacles() {
         for (Obstacle obstacle : obstacleList) {
             obstacle.update();
-            if (obstacle.rect.collision(hero.rect)) {
+            if (obstacle.rect.overlaps(hero.getRect())) {
                 Gdx.app.log(GameText.gameTag, "Collision true");
                 hero.hit(1);
             }

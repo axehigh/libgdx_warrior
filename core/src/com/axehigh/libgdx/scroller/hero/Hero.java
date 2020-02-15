@@ -5,6 +5,7 @@ import com.axehigh.libgdx.scroller.utils.CollisionRectangle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,9 @@ public class Hero {
 
     private List<Texture> images;
     private float frame = 0;
-    private int frameSpeed = 40;
+    private int frameSpeed = 30;
 
-    public CollisionRectangle rect;
+    private Rectangle rect;
 
     MyGdxGame game;
 
@@ -43,7 +44,9 @@ public class Hero {
 
         y = ground;
         x = 200;
-        rect = new CollisionRectangle((int) x, (int) y, images.get((int)frame).getWidth(), images.get((int)frame).getHeight());
+        rect = new Rectangle(x, y, images.get((int) frame).getWidth()-40, images.get((int) frame).getHeight());
+
+
     }
 
     private void loadImages() {
@@ -71,7 +74,7 @@ public class Hero {
             y = ground;
         }
 
-        rect.move((int) x, (int) y);
+        rect.setPosition(x, y);
     }
 
 

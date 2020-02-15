@@ -60,6 +60,8 @@ public class MenuScreen extends ScreenAdapter {
         game.getBackgroundManager().render(game.batch);
         game.font.draw(game.batch, GameText.gameTitle, Gdx.graphics.getWidth() * .45f, Gdx.graphics.getHeight() * .75f);
         playButton.render(game.batch);
+        game.gameScore.renderHiscore();
+
         game.batch.end();
         if (game.debug) {
             playButton.drawRectangle(game.shape);

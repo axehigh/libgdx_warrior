@@ -28,6 +28,18 @@ public class GameScore {
     }
 
     public void render() {
-        game.font.draw(game.batch, GameText.scoreText + score, 100, Gdx.graphics.getHeight() - 100);
+        game.font.draw(game.batch, GameText.scoreText + score, 50, Gdx.graphics.getHeight() - 50);
+    }
+
+    public void renderHiscore() {
+        game.font.draw(game.batch, GameText.hiScoreText + hiScore, 50, Gdx.graphics.getHeight() - 50);
+    }
+
+    public boolean checkHiscore() {
+        if (score > hiScore) {
+            hiScore = score;
+        }
+
+        return hiScore == score && score != 0;
     }
 }

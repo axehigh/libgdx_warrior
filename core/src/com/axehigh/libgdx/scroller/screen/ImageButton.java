@@ -1,6 +1,5 @@
 package com.axehigh.libgdx.scroller.screen;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -36,6 +35,10 @@ public class ImageButton {
 
     public void render(SpriteBatch batch) {
         batch.draw(image, rect.x, rect.y);
+    }
+
+    public void render(SpriteBatch batch, float x, float y) {
+        batch.draw(image, x, y);
     }
 
     public boolean contains(int x, int y) {

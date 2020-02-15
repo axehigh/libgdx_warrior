@@ -11,9 +11,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 
 public class MyGdxGame extends Game {
-    public boolean debug = true;
+    public boolean debug = false;
     public boolean debugCoord =false;
-    public boolean debugRect =true;
+    public boolean debugRect =false;
 
     public SpriteBatch batch;
     public BitmapFont font;

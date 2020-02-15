@@ -6,6 +6,7 @@ import com.axehigh.libgdx.scroller.utils.GfxUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,10 @@ public class Obstacle {
 
     private float velocity;
 
-    public CollisionRectangle rect;
+    public Rectangle rect;
     private List<Texture> images;
-    private int frame = 0;
-    private int frameSpeed = 100;
+    private float frame = 0;
+    private int frameSpeed = 35;
 
     public Obstacle(MyGdxGame myGdxGame, int startingX, int velocity) {
         this.game = myGdxGame;
@@ -38,7 +39,7 @@ public class Obstacle {
         this.y = 102;
         this.x = startingX;
         this.velocity = velocity;
-        rect = new CollisionRectangle((int) this.x, (int) this.y, this.images.get(frame).getWidth(), this.images.get(frame).getHeight());
+        rect = new Rectangle((int) this.x, (int) this.y, this.images.get((int)frame).getWidth()-40, this.images.get((int)frame).getHeight());
     }
 
 
@@ -53,17 +54,20 @@ public class Obstacle {
         }
 
 
-        rect.move((int) this.x, (int) this.y);
+        rect.setPosition(x+40, y);
+
     }
 
     public void render(SpriteBatch batch) {
-        frame = frame + (int) (Gdx.graphics.getDeltaTime() * frameSpeed);
-        if (frame > 17) {
+        frame = frame + (Gdx.graphics.getDeltaTime() * frameSpeed);
+        if ((int) frame > 17) {
             frame = 0;
         }
-        batch.draw(images.get(frame), x, y);
+
+
+        batch.draw(images.get((int)frame), x, y);
         if (game.debugCoord) {
-            game.font.draw(batch, rect.toString(), this.x, this.y + images.get(frame).getHeight());
+            game.font.draw(batch, rect.toString(), this.x, this.y + images.get((int)frame).getHeight());
         }
     }
 
