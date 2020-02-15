@@ -1,5 +1,9 @@
 package com.axehigh.libgdx.scroller.utils;
 
+import com.axehigh.libgdx.scroller.GameText;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Rectangle;
+
 public class CollisionRectangle {
 
     public int x, y, width, height;
@@ -22,6 +26,13 @@ public class CollisionRectangle {
                 rect.x < this.x + this.width &&
                 this.y < rect.y + rect.height &&
                 rect.y < this.y + this.height;
+    }
+
+    public boolean collision(int _x, int _y) {
+        Gdx.app.log(GameText.gameTag, "Rect: " + toString());
+        Gdx.app.log(GameText.gameTag, "_x_y: " + _x + "," + _y);
+        return (_x < this.x + this.width &&
+                this.y > _y && _y < this.y + this.height);
     }
 
     public String toString() {

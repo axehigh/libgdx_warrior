@@ -6,6 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,10 +21,13 @@ public class Hero {
     private float y;
 
     private float yVelocity = 0;
-    private int jumpHeight = 300;
+    private int jumpHeight = 400;
     private int gravity = -500;
     private int ground = 102;
-    Texture image;
+
+    private List<Texture> images;
+    private float frame = 0;
+    private int frameSpeed = 40;
 
     public CollisionRectangle rect;
 
@@ -32,10 +38,22 @@ public class Hero {
 
     public Hero(MyGdxGame myGdxGame) {
         this.game = myGdxGame;
-        image = new Texture("viking.png");
+
+        loadImages();
+
         y = ground;
-        x = 50;
-        rect = new CollisionRectangle((int) x, (int) y, image.getWidth(), image.getHeight());
+        x = 200;
+        rect = new CollisionRectangle((int) x, (int) y, images.get((int)frame).getWidth(), images.get((int)frame).getHeight());
+    }
+
+    private void loadImages() {
+        images = new ArrayList<>();
+        for (int i = 0; i <= 9; i++) {
+            images.add(new Texture("hero/Walking_00" + i + ".png"));
+        }
+        for (int i = 10; i <= 17; i++) {
+            images.add(new Texture("hero/Walking_0" + i + ".png"));
+        }
     }
 
 
@@ -75,10 +93,15 @@ public class Hero {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(image, x, y);
+        frame = frame + (Gdx.graphics.getDeltaTime() * frameSpeed);
+        if ((int) frame > 17) {
+            frame = 0;
+        }
+
+        batch.draw(images.get((int) frame), x, y);
 
         if (game.debug) {
-            game.font.draw(batch, rect.toString(), this.x, this.y + image.getHeight());
+            game.font.draw(batch, rect.toString(), this.x, this.y + images.get(0).getHeight());
         }
     }
 

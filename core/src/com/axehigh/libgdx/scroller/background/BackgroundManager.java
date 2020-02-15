@@ -41,15 +41,10 @@ public class BackgroundManager {
     }
 
     public void render(SpriteBatch gfx) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         for (BackgroundElement backgroundElement : grounds) {
             backgroundElement.render(gfx);
         }
         ground.render(gfx);
-
-
     }
 
 
